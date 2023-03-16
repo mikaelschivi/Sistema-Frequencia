@@ -1,0 +1,64 @@
+Pseudo-Code
+
+struct Estudante{
+	digital = x;
+	num 	= y;
+}
+
+getInput = userInput();
+
+// lida com input por teclado
+case getInput == int {
+
+	idNumber = getInput;
+
+	if ( idNumber == isInDataBase() ) {
+		isHere(idNumber);
+	}
+
+	if ( idNumber != isInDataBase() ) {
+		idFingerprint = getFingerprint();
+		if isInDataBase(idFingerprint){
+			// matricula escrita errada
+		}
+		addDataBase( idNumber, idFingeprint);
+	}
+}
+
+// lida com input por digital
+case getInput == digital {
+
+	idFingerprint = getInput;
+
+	if ( idFingerprint == isInDataBase() ) {
+		isHere( idFingerprint );
+	}
+	
+	if ( idFingerprint != isInDataBase() ) {
+		idNumber = getNumber();
+		if isInDataBase(idNumber){
+			// digital mal lida
+		}
+		addDataBase( idNumber, idFingeprint);
+	}
+}
+
+// adiciona presenca em dia X
+isHere( NumberOrFingerprint ) {
+	type( NumberOrFingerprint ) {
+		if Int {
+			addPresenca(idNumber);
+		}
+		if digital {
+			addPresenca(idFingerprint);
+		}
+
+	}
+}
+
+// adiciona para o banco de dados
+addDataBase( number, fingerprint) {
+	// 
+	//
+	//
+}
