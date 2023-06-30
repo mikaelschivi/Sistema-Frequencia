@@ -1,41 +1,51 @@
 #include <Wire.h>
+#include <RTClib.h>
 
+// // RTC initializer
+//RTC_DS1307 RTC;
 
-void receiveEvent(int numBytes) {
-  while (Wire.available()) {
-    char key = Wire.read();
-    
-    // Process the received key value
-    switch (key) {
-      case '1':
-        Serial.println("True");
-        //delay(2000);
-        tone(5,800);
-        delay(1000);
-        noTone(5);
-        delay(1000000);
-        break;
-      case '2':
-        Serial.println("Triste");
-        break;
-      case '3':
-        // Do something for key '3'
-        break;
-      // Add more cases for other keys as needed
-      
-      default:
-        // Invalid key or unrecognized command
-        break;
-    }
-  }
-}
+// logic for handling information
+typedef struct student{
+  char id[8];
+  int attendances = 0;
+  // fingerprint id
+
+  int day;
+  int month;
+  int hour;
+  int min;
+} student;
+
+student aluno;                  // aluno init
+char id = ' ';
+
 
 void setup() {
   Wire.begin(9); // Slave Arduino address
-  Wire.onReceive(receiveEvent);
   Serial.begin(9600);
+  Wire.onReceive(receiveEvent);
 }
 
 void loop() {
   // Slave Arduino loop
+  
+}
+
+int i = 0;
+
+void receiveEvent(int byteCount) {
+  while (Wire.available()) {
+    aluno.id[i] = Wire.read(); 
+    i++;
+  }
+  Serial.print("Slave - id ");
+  Serial.println(aluno.id);
+  // aluno.month = now.month();
+  // Serial.print(now.month());
+  // aluno.day = now.day();
+  // Serial.print(now.day());
+  // aluno.hour = now.hour();
+  // aluno.min = now.minute();
+  // aluno.attendances = aluno.attendances + 1;
+  
 }

@@ -5,6 +5,9 @@
 
 char t[32];
 
+// RTC initializer
+RTC_DS1307 RTC;
+
 // Initializer for Matrix keypad
 const byte ROWS = 4; 
 const byte COLS = 4; 
@@ -22,22 +25,6 @@ Keypad keypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 // Initializer for lcd i2c display
 LiquidCrystal_I2C lcd(0x27, 16, 2);  
 
-// RTC initializer
-RTC_DS1307 RTC;
-
-// logic for handling information
-typedef struct student{
-  char id[8];
-  int attendances = 0;
-  // fingerprint id
-
-  int day;
-  int month;
-  int hour;
-  int min;
-} student;
-
-
 void setup() {
   Wire.begin();
   Serial.begin(9600);
@@ -45,15 +32,11 @@ void setup() {
 
   lcd.backlight();    // turn on lcd blacklight
   lcd.init();         // turn on lcd
-  // Serial.print('\n');
   
   lcd.setCursor(0, 0);                // Initial Setup
   lcd.print("Insira sua matricula");
-  // lcd.setCursor(15, 1);
-  // lcd.print("SETUP");
-  // lcd.setCursor(0, 2);
-  // lcd.blink_on();
-
+  lcd.setCursor(0, 1);
+  lcd.blink_on();
 }
 
 
@@ -63,19 +46,22 @@ int index = 0;
 
 void loop() {
   char key = keypad.getKey();
-  student aluno;                      // aluno init
-  DateTime now = RTC.now(); 
   
   if (key) {
-        if( key == '*'){
+      if( key == '*'){
       lcd.clear();                // Clear lcd
       lcd.setCursor(0, 0);        // Set cursor at (0,0) - Top left
       lcd.print("Bem-vindo :)");  // Print to lcd
-      tone(12, 2500, 125);        // Beep to audible response
+      delay(1000);
+      //tone(12, 2500, 125);        // Beep to audible response
 
-      for(int i=0; i<sizeof(id); i++){
-        aluno.id[i] = id[i];
-      }
+      Serial.print('\n');
+      Serial.println(id);
+
+      //start the transmission
+      Wire.beginTransmission(9); // Slave Arduino address
+      Wire.write(id);
+      Wire.endTransmission();
 
       memset(id, 0, sizeof(id));  // Set all elements of id[] to 0 which = NULL
       index = 0;                  // Set index=0 to remap counter
@@ -83,12 +69,6 @@ void loop() {
       lcd.clear();                
       lcd.setCursor(0, 0);      
 
-      aluno.month = now.month();
-      aluno.day = now.day();
-      aluno.hour = now.hour();
-      aluno.min = now.minute();
-      aluno.attendances = aluno.attendances + 1;
-      
       lcd.print("Aguarde..");
       delay(2200);
 
@@ -97,8 +77,6 @@ void loop() {
       lcd.clear();
       lcd.setCursor(0, 0);                // Set cursor at (0,0) - Top left
       lcd.print("Insira sua matricula");  // Print to lcd
-      
-      lcd.setCursor(0, 2);
       lcd.blink_on();                     // Cursor blink
     }
 
@@ -106,7 +84,7 @@ void loop() {
     else{
           id[index] = key;
           
-          lcd.setCursor(index, 2);
+          lcd.setCursor(index, 1);
           lcd.print(id[index]);
           Serial.print(id[index]);
 
@@ -114,10 +92,5 @@ void loop() {
             index++;
           }
     }
-
-    // Serial.println(key);
-    // Wire.beginTransmission(9); // Slave Arduino address
-    // Wire.write(key);
-    // Wire.endTransmission();
   }  
 }
