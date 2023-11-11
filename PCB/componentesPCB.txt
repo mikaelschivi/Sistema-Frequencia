@@ -1,0 +1,32 @@
+Suporte para bateria 9V
+	Quant. 2
+	https://www.baudaeletronica.com.br/produto/suporte-para-bateria-9v.html?utm_source=Site&utm_medium=GoogleMerchant&utm_campaign=GoogleMerchant&gclid=Cj0KCQjwsp6pBhCfARIsAD3GZuZgZbycWs0eUqG3z1t0kk-i8ohP4NrZFYuDcuaqjmdTrnl36lhNyKEaApZ2EALw_wcB 
+	https://www.magazineluiza.com.br/suporte-case-para-bateria-9v-com-rabicho-13cm-oem/p/jjd08f5dja/cj/batr/
+
+
+Regulador de tensão L7805 5V
+	Quant. 2
+	https://produto.mercadolivre.com.br/MLB-1234861602-10-pecas-regulador-de-tenso-5v-l7805-l7805cv-_JM#position=5&search_layout=grid&type=item&tracking_id=d87eda0b-b0e3-4eeb-839c-0623869641fb
+
+
+Conector KK Femea/Macho 2,54mm Vertical
+	Model.     Quant.
+	1x6  ----->  1
+	1x8  ----->  2
+	1x4  ----->  2
+
+	https://www.eletrodex.net/loja/busca.php?loja=900872&palavra_busca=Conector+KK+passo+2%2C54mm+Macho+%28Alojamento%29
+	
+Terminal Molex Kk 2,54mm Macho
+	https://www.eletrodex.net/loja/busca.php?loja=900872&palavra_busca=Conector+KK+passo+2%2C54mm+Macho+%28Alojamento%29
+
+
+Capacitor 
+	Model.     Quant.
+	0.33uF  ----->  1
+	0.01uF  ----->  1
+
+Placa PCB
+	12x14
+	
+	https://www.eletrodex.net/montagem/pci/placas/placa-de-composite-virgem
